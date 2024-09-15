@@ -1,0 +1,125 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Multi-Interface Network Packet Capture Program"><title>main in multi_thead - Rust</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-46f98efaafac5295.ttf.woff2,FiraSans-Regular-018c141bf0843ffd.woff2,FiraSans-Medium-8f9a781e4970d388.woff2,SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2,SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2" crossorigin href="../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../static.files/rustdoc-c5d6553a23f1e5a6.css"><meta name="rustdoc-vars" data-root-path="../" data-static-root-path="../static.files/" data-current-crate="multi_thead" data-themes="" data-resource-suffix="" data-rustdoc-version="1.81.0 (eeb90cda1 2024-09-04)" data-channel="1.81.0" data-search-js="search-d234aafac6c221dd.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../static.files/storage-118b08c4c78b968e.js"></script><script defer src="sidebar-items.js"></script><script defer src="../static.files/main-d2fab2bf619172d3.js"></script><noscript><link rel="stylesheet" href="../static.files/noscript-df360f571f6edeae.css"></noscript><link rel="alternate icon" type="image/png" href="../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc fn"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle" title="show sidebar"></button></nav><nav class="sidebar"><div class="sidebar-crate"><h2><a href="../multi_thead/index.html">multi_thead</a><span class="version">0.1.0</span></h2></div><div class="sidebar-elems"></div></nav><div class="sidebar-resizer"></div><main><div class="width-limiter"><rustdoc-search></rustdoc-search><section id="main-content" class="content"><div class="main-heading"><h1>Function <a href="index.html">multi_thead</a>::<wbr><a class="fn" href="#">main</a><button id="copy-path" title="Copy item path to clipboard">Copy item path</button></h1><span class="out-of-band"><a class="src" href="../src/multi_thead/main.rs.html#69-127">source</a> · <button id="toggle-all-docs" title="collapse all docs">[<span>&#x2212;</span>]</button></span></div><pre class="rust item-decl"><code>pub(crate) fn main()</code></pre><details class="toggle top-doc" open><summary class="hideme"><span>Expand description</span></summary><div class="docblock"><h2 id="multi-interface-network-packet-capture-program"><a class="doc-anchor" href="#multi-interface-network-packet-capture-program">§</a>Multi-Interface Network Packet Capture Program</h2>
+<p>This program captures and displays network packets from <strong>all available network interfaces</strong> using the <code>pnet</code> crate.
+It spawns a separate thread for each network interface to monitor packets concurrently.
+Each thread prints the size and content of each packet (in hexadecimal format) passing through its respective interface.</p>
+<h3 id="how-it-works"><a class="doc-anchor" href="#how-it-works">§</a>How It Works</h3>
+<ol>
+<li>
+<p><strong>Network Interface Discovery</strong>:</p>
+<ul>
+<li>The program retrieves a list of all available network interfaces on the system.</li>
+<li>For each interface, a separate thread is created to handle packet capture.</li>
+</ul>
+</li>
+<li>
+<p><strong>Packet Capture</strong>:</p>
+<ul>
+<li>Each thread opens a packet capture channel on its assigned interface using the <code>pnet::datalink::channel</code> method.</li>
+<li>The program then enters an infinite loop, capturing packets using the receiver (<code>rx</code>).</li>
+</ul>
+</li>
+<li>
+<p><strong>Packet Display</strong>:</p>
+<ul>
+<li>Each captured packet’s size and content are displayed in hexadecimal format, along with the interface’s name.</li>
+</ul>
+</li>
+</ol>
+<h3 id="example"><a class="doc-anchor" href="#example">§</a>Example</h3>
+<p>To run the program:</p>
+<div class="example-wrap"><pre class="language-bash"><code>sudo cargo run
+</code></pre></div><h3 id="notes"><a class="doc-anchor" href="#notes">§</a>Notes:</h3>
+<ul>
+<li>This program only supports Ethernet-based interfaces.</li>
+<li><strong>Administrative privileges</strong> are required to run the program due to the need for access to network interfaces.</li>
+</ul>
+<h3 id="error-handling"><a class="doc-anchor" href="#error-handling">§</a>Error Handling</h3>
+<p>The program will handle errors in the following ways:</p>
+<ol>
+<li>If creating a channel for an interface fails, an error message is printed, but other interfaces will continue capturing packets.</li>
+<li>The program panics if a thread fails during execution.</li>
+</ol>
+<h3 id="mermaid-diagram"><a class="doc-anchor" href="#mermaid-diagram">§</a>Mermaid Diagram</h3>
+<p>The following diagram shows the flow of the program:</p>
+<script type="module">
+    const mermaidModuleFile = "static.files.mermaid/mermaid.esm.min.mjs";
+    const fallbackRemoteUrl = "https://unpkg.com/mermaid@10/dist/mermaid.esm.min.mjs";
+    const rustdocVarsId= "rustdoc-vars";
+    const dataRootPathAttr = "data-root-path";
+
+
+    function initializeMermaid(mermaid) {
+     var amrn_mermaid_theme =
+         window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+         ? 'dark'
+         : 'default';
+
+      mermaid.initialize({
+        'startOnLoad':'true',
+        'theme': amrn_mermaid_theme,
+        'logLevel': 3 });
+      mermaid.run();
+    }
+
+	function failedToLoadWarnings() {
+		for(var elem of document.getElementsByClassName("mermaid")) {
+			 elem.innerHTML =
+			 `<div> <mark>
+			  &#9888; Cannot render diagram! Failed to import module from local
+			  file and remote location also!
+			  Either access the rustdocs via HTTP/S using a
+			  <a href="https://developer.mozilla.org/en-US/docs/Learn/Common_questions/Tools_and_setup/set_up_a_local_testing_server">
+			   local web server
+			  </a>, for example:
+			   python3 -m http.server --directory target/doc/, <br> or enable local file access in your
+			   Safari/Firefox/Chrome browser, for example
+			  starting Chrome with flag '--allow-file-access-from-files'.
+			  </mark></div> `;
+		}
+	}
+
+
+    // If rustdoc is read from file directly, the import of mermaid module
+    // from file will fail. In this case falling back to remote location.
+    // If neither succeeds, the mermaid markdown is replaced by notice to
+    // enable file acecss in browser.
+    try {
+       var rootPath = document
+         .getElementById(rustdocVarsId)
+         .attributes[dataRootPathAttr]
+         .value;
+       const {
+         default: mermaid,
+       } = await import(rootPath + mermaidModuleFile);
+	   initializeMermaid(mermaid);
+    } catch (e) {
+       try {
+         const {
+            default: mermaid,
+         } = await import(fallbackRemoteUrl);
+	     initializeMermaid(mermaid);
+       } catch (e) {
+		 failedToLoadWarnings();
+	   }
+    }
+</script>
+<div class="mermaid">
+ graph TD;
+     A[Start] --> B{Are there interfaces?};
+     B -- Yes --> C[Spawn thread for each interface];
+     C --> D[Open channel for each interface];
+     D --> E[Capture packets in loop];
+     E --> F[Display packet data];
+     F --> E;
+     B -- No --> G[Exit with error];
+</div>
+<h3 id="dependencies"><a class="doc-anchor" href="#dependencies">§</a>Dependencies</h3>
+<p>Add the following dependency to your <code>Cargo.toml</code>:</p>
+<div class="example-wrap"><pre class="language-toml"><code>[dependencies]
+pnet = &quot;0.35.0&quot;
+
+[dev-dependencies]
+aquamarine = &quot;0.5.0&quot;
+</code></pre></div><h3 id="code-overview"><a class="doc-anchor" href="#code-overview">§</a>Code Overview</h3>
+<p>This code demonstrates spawning a thread for each network interface and capturing network packets concurrently:</p>
+</div></details></section></div></main></body></html>

@@ -1,1 +1,0 @@
-window.SIDEBAR_ITEMS = {"enum":["Opcode","Retcode"],"mod":["DnsClasses","DnsTypes"],"struct":["Dns","DnsClass","DnsIterable","DnsPacket","DnsQuery","DnsQueryIterable","DnsQueryPacket","DnsResponse","DnsResponseIterable","DnsResponsePacket","DnsType","MutableDnsPacket","MutableDnsQueryPacket","MutableDnsResponsePacket"]};

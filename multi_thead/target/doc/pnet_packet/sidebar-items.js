@@ -1,1 +1,0 @@
-window.SIDEBAR_ITEMS = {"enum":["MutPacketData","PacketData"],"mod":["arp","dhcp","dns","ethernet","flowcontrol","gre","icmp","icmpv6","ip","ipv4","ipv6","sll","sll2","tcp","udp","usbpcap","util","vlan","vxlan"],"trait":["FromPacket","MutablePacket","Packet","PacketSize","PrimitiveValues"]};
